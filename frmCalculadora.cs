@@ -81,20 +81,16 @@ namespace Calculadora
         {
             valor2 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
 
-            if (operacao == ETipoOperacao.Soma)
+            switch (operacao)
             {
-                txtResultado.Text = Convert.ToString(valor1 + valor2);
-            } else if (operacao == ETipoOperacao.Subtracao)
-            {
-                txtResultado.Text = Convert.ToString(valor1 - valor2);
-            }
-            else if (operacao == ETipoOperacao.Multiplicacao)
-            {
-                txtResultado.Text = Convert.ToString(valor1 * valor2);
-            }
-            else if (operacao == ETipoOperacao.Divisao)
-            {
-                txtResultado.Text = Convert.ToString(valor1 / valor2);
+                case ETipoOperacao.Soma: txtResultado.Text = Convert.ToString(valor1 + valor2);
+                    break;
+                case ETipoOperacao.Subtracao: txtResultado.Text = Convert.ToString(valor1 - valor2);
+                    break;
+                case ETipoOperacao.Multiplicacao: txtResultado.Text = Convert.ToString(valor1 * valor2);
+                    break;
+                default: txtResultado.Text = Convert.ToString(valor1 / valor2);
+                    break;
             }
         }
 
