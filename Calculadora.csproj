@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OperacoesBasicas\Divisao.cs" />
+    <Compile Include="OperacoesBasicas\Multiplicacao.cs" />
+    <Compile Include="OperacoesBasicas\OperacaoBasicaAbstract.cs" />
+    <Compile Include="OperacoesCalculos\OperacaoCalculo.cs" />
+    <Compile Include="OperacoesBasicas\Soma.cs" />
+    <Compile Include="OperacoesBasicas\Subtracao.cs" />
     <Compile Include="Enums\ETipoOperacao.cs" />
     <Compile Include="frmCalculadora.cs">
       <SubType>Form</SubType>

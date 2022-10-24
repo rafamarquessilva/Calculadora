@@ -1,22 +1,19 @@
 ﻿using Calculadora.Enums;
+using Calculadora.OperacoesCalculos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Calculadora
 {
     public partial class frmCalculadora : Form
     {
-        decimal valor1 = 0;
-        decimal valor2 = 0;
-        ETipoOperacao operacao;
+        double valor1 = 0.0;
+        double valor2 = 0.0;
+        ETipoOperacao tipoOperacao;
+
+        OperacaoCalculo operacao = new OperacaoCalculo();
+
         public frmCalculadora()
         {
             InitializeComponent();
@@ -79,50 +76,50 @@ namespace Calculadora
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
-            valor2 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
+            valor2 = double.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
 
-            switch (operacao)
+            switch (tipoOperacao)
             {
-                case ETipoOperacao.Soma: txtResultado.Text = Convert.ToString(valor1 + valor2);
+                case ETipoOperacao.Soma: txtResultado.Text = Convert.ToString(operacao.Soma.Calcular(valor1, valor2));
                     break;
-                case ETipoOperacao.Subtracao: txtResultado.Text = Convert.ToString(valor1 - valor2);
+                case ETipoOperacao.Subtracao: txtResultado.Text = Convert.ToString(operacao.Subtracao.Calcular(valor1, valor2));
                     break;
-                case ETipoOperacao.Multiplicacao: txtResultado.Text = Convert.ToString(valor1 * valor2);
+                case ETipoOperacao.Multiplicacao: txtResultado.Text = Convert.ToString(operacao.Multiplicacao.Calcular(valor1, valor2));
                     break;
-                default: txtResultado.Text = Convert.ToString(valor1 / valor2);
+                default: txtResultado.Text = Convert.ToString(operacao.Divisao.Calcular(valor1, valor2));
                     break;
             }
         }
 
         private void btnSomar_Click(object sender, EventArgs e)
         {
-            valor1 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
+            valor1 = double.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
             txtResultado.Text = "";
-            operacao = ETipoOperacao.Soma;
+            tipoOperacao = ETipoOperacao.Soma;
             lblOperacao.Text = "+";
         }
 
         private void btnSubtrair_Click(object sender, EventArgs e)
         {
-            valor1 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
+            valor1 = double.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
             txtResultado.Text = "";
-            operacao = ETipoOperacao.Subtracao;
+            tipoOperacao = ETipoOperacao.Subtracao;
             lblOperacao.Text = "-";
         }
 
         private void btnMultiplicar_Click(object sender, EventArgs e)
         {
-            valor1 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
+            valor1 = double.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
             txtResultado.Text = "";
-            operacao = ETipoOperacao.Multiplicacao;
+            tipoOperacao = ETipoOperacao.Multiplicacao;
             lblOperacao.Text = "x";
         }
 
         private void btnDividir_Click(object sender, EventArgs e)
         {
-            valor1 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
+            valor1 = double.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
             txtResultado.Text = "";
-            operacao = ETipoOperacao.Divisao;
+            tipoOperacao = ETipoOperacao.Divisao;
             lblOperacao.Text = "/";
         }
 
